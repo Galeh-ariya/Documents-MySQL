@@ -1,10 +1,14 @@
+-- masuk ke psql
+psql --dbname=nama_database --username
+
 -- Membuat database
 CREATE DATABASE marketplace;
 -- NOTE
 -- CREATE DATABASE nama_database;
 
 -- Menampilkan semua database
-SHOW DATABASES;
+\l
+select datname from pg_database;
 
 
 -- ###
@@ -18,9 +22,9 @@ DROP DATABASE marketplace;
 -- ###
 
 -- Masuk ke dalam database
-USE marketplace;
+\c nama_database;
 -- NOTE
--- USE nama_database;
+-- bisa juga dengan cara exit kemudian login dengan dbname yang sudah di buat
 
 
 -- ###
@@ -117,9 +121,7 @@ MODIFY harga VARCHAR (100) after quantity;
 -- Tipe Bilangan Number
 
 -- Bilangan Bulat
-TINYINT;
 SMALLINT;
-MEDIUMINT;
 INT;
 BIGINT;
 -- NOTE
@@ -138,6 +140,7 @@ DOUBLE;
 
 -- Decimal
 DECIMAL(5, 2);
+NUMERIC(4,2);
 -- NOTE
 -- DECIMAL(Banyak angka, berapa angka setelah koma)
 -- Jika DECIMAL(5, 2), Sama artinya dengan 999.99
@@ -156,22 +159,16 @@ VARCHAR(10);
 -- VARCHAR(10)  = 'galeh'
 
 -- Text
-TINYTEXT;
 TEXT;
-MEDIUMTEXT;
-LONGTEXT;
 -- NOTE
--- TINYTEXT     256 bytes
 -- TEXT         64 kb
--- MEDIUMTEXT   16 MB
--- LONGTEXT     4 GB
 
 
 
 -- ###
 
 -- Tipe Data Enum
-ENUM;
+CREATE TYPE NAMA_ENUM AS ENUM ('value 1', 'value 2', 'dst');
 -- NOTE
 -- Tipe data enum ini adalah tipe data String yang terbatas pilihannya
 -- Contohnya adalah jenis kelamin
@@ -182,16 +179,14 @@ ENUM;
 
 -- Tipe Data Waktu
 DATE;
-DATETIME;
 TIMESTAMP;
 TIME;
+INTERVAL
 YEAR;
 -- NOTE
 -- DATE, Format         : YYYY-MM-DD
--- DATETIME, Format     : YYYY-MM-DD HH:MM:SS
 -- TIMESTAMP, Format    : YYYY-MM-DD HH:MM:SS *for inforation created, dll
 -- TIME, Format         : HH:MM:SS
--- YEAR, Format         : YYYY
 
 
 
